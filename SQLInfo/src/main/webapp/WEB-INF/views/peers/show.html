@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title th:text="${peer.getNickname()}">Title</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<p th:text="${'Nickname: ' + peer.getNickname()}"/>
+<p th:text="${'Birthday: ' + #dates.format(peer.getBirthday(), 'dd-MM-yyyy')}"/>
+<hr>
+
+<form th:method="DELETE" th:action="@{/peers/{nickname}(nickname=${peer.getNickname()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:action="@{/peers/{nickname}/edit(nickname=${peer.getNickname()})}">
+    <input type="submit" value="Edit" />
+</form>
+
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+</body>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</html>

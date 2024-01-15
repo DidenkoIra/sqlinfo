@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>TimeTracking</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>TimeTracking</h4>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Peer</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>State</th>
+        <th> </th>
+    </tr>
+    <tr th:each="timetracking : ${timetracking}">
+        <td th:text="${timetracking.getId()}"/>
+        <td><a th:href="@{/peers/{nickname}(nickname=${timetracking.getPeer().getNickname()})}"
+               th:text="${timetracking.getPeer().getNickname()}" > Peer </a></td>
+        <td th:text="${#dates.format(timetracking.getDate(), 'dd-MM-yyyy')}"/>
+        <td th:text="${timetracking.getTime()}"/>
+        <td th:text="${timetracking.getState()}"/>
+
+        <td><a th:href="@{/timetracking/{id}(id=${timetracking.getId()})}">
+            <img th:src="@{/resources/static/info.png}" width="25" height="25"></a></td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/timetracking/new">
+    <input type="submit" value="Create new timetracking" />
+</form>
+
+<form action="/sqlinfo/timetracking/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/timetracking/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

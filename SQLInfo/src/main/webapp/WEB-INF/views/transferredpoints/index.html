@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>TimeTracking</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>TimeTracking</h4>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Checking Peer</th>
+        <th>Checked Peer</th>
+        <th>Points Amount</th>
+        <th> </th>
+    </tr>
+    <tr th:each="transferredpoints : ${transferredpoints}">
+        <td th:text="${transferredpoints.getId()}"/>
+        <td><a th:href="@{/peers/{nickname}(nickname=${transferredpoints.getCheckingPeer().getNickname()})}"
+               th:text="${transferredpoints.getCheckingPeer().getNickname()}" > Checking Peer </a></td>
+        <td><a th:href="@{/peers/{nickname}(nickname=${transferredpoints.getCheckedPeer().getNickname()})}"
+               th:text="${transferredpoints.getCheckedPeer().getNickname()}" > Checked Peer </a></td>
+        <td th:text="${transferredpoints.getPointsAmount()}">Points Amount</td>
+        <td><a th:href="@{/transferredpoints/{id}(id=${transferredpoints.getId()})}">
+            <img th:src="@{/resources/static/info.png}" width="25" height="25"></a></td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/transferredpoints/new">
+    <input type="submit" value="Create new transferredpoints" />
+</form>
+
+<form action="/sqlinfo/transferredpoints/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/transferredpoints/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

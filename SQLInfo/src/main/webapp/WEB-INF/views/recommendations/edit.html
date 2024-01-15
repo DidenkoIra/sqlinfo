@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+    <title th:text="${'Edit: ' + recommendation.getPeer().getNickname()+ ' -> ' + recommendation.getRecommendedPeer().getNickname()}">Title</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<form th:method="PATCH" th:action="@{/recommendations/{id}(id=${recommendation.getId()})}"
+      th:object="${recommendation}">
+    <label for="Peer">Enter peer: </label>
+    <input type="text" th:field="${recommendation.peer.nickname}" id="Peer"/>
+    <br/>
+    <label for="RecommendedPeer">Enter recommended peer: </label>
+    <input type="text" th:field="${recommendation.recommendedPeer.nickname}" id="RecommendedPeer"/>
+    <br/>
+    <input type="submit" value="Save"/>
+</form>
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</body>
+</html>

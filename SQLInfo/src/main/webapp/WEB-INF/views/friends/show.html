@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title th:text="${friend.getPeer1().getNickname()+ ' and ' + friend.getPeer2().getNickname()}">Title</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<p>Peer 1: <a th:href="@{/peers/{nickname}(nickname=${friend.getPeer1().getNickname()})}"
+              th:text="${friend.getPeer1().getNickname()}"/></p>
+<p>Peer 2: <a th:href="@{/peers/{nickname}(nickname=${friend.getPeer2().getNickname()})}"
+              th:text="${friend.getPeer2().getNickname()}"/></p>
+<hr>
+
+<form th:method="DELETE" th:action="@{/friends/{id}(id=${friend.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:action="@{/friends/{id}/edit(id=${friend.getId()})}">
+    <input type="submit" value="Edit" />
+</form>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Create new check</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<form th:method="POST" th:action="@{/checks}" th:object="${check}">
+<label for="peer">Enter nickname peer: </label>
+<input type="text" th:field="${check.peer.nickname}" id="peer"/>
+<br/>
+<br/>
+<label for="title">Enter task title: </label>
+<input type="text" th:field="${check.task.title}" id="title"/>
+<br/>
+<br/>
+<label for="date">Enter date: </label>
+<input type="text" th:field="*{date}" id="date"/>
+<div style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">...</div>
+<br/>
+<input type="submit" value="Create!"/>
+</form>
+
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</body>
+</html>

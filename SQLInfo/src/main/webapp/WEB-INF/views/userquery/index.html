@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>User query</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+    <h4>Write your query here: </h4>
+    <form th:method="POST" th:action="@{/userquery}" th:object="${userQuery}">
+        <input type="hidden" th:field="${userQuery.name}" id="name" readonly/>
+        <textarea class="form-control" id="text" rows="10"
+                  name="text"
+                  placeholder="text" th:field="${userQuery.text}"
+                  required="required"></textarea>
+        <input type="submit" value="Execute"/>
+    </form>
+    <p th:id="errorMessage" th:text="${errorMessage}"/>
+</body>
+</html>

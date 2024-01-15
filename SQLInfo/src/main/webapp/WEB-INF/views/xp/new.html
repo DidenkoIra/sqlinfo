@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Create new XP</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<form th:method="POST" th:action="@{/xp}" th:object="${xp}">
+    <label for="check">Enter check id: </label>
+    <input type="text" th:field="${xp.check.id}" id="check"/>
+    <br/>
+    <br/>
+    <label for="xpAmount">Enter XP amount: </label>
+    <input type="text" th:field="*{xpAmount}" id="xpAmount"/>
+    <div style="color: red" th:if="${#fields.hasErrors('xpAmount')}" th:errors="*{xpAmount}">...</div>
+    <br/>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</body>
+</html>

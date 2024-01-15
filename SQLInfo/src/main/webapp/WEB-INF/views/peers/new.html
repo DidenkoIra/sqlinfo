@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Create new peer</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<form th:method="POST" th:action="@{/peers}" th:object="${peer}">
+    <label for="nickname">Enter nickname: </label>
+    <input type="text" th:field="*{nickname}" id="nickname"/>
+    <div style="color: red" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">...</div>
+    <br/>
+    <br/>
+    <label for="birthday">Enter birthday: </label>
+    <input type="text" th:field="*{birthday}" id="birthday"/>
+    <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">...</div>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</body>
+</html>

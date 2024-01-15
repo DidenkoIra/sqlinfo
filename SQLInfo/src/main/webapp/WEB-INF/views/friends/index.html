@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+    <title>Friends</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>Friends</h4>
+<table>
+    <tr>
+        <th>Peers</th>
+    </tr>
+    <tr th:each="friend: ${friends}">
+        <td><a th:href="@{/friends/{id}(id=${friend.getId()})}"
+               th:text="${friend.getPeer1().getNickname()+ ', ' + friend.getPeer2().getNickname()}" > </a></td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/friends/new">
+    <input type="submit" value="Create new friend" />
+</form>
+
+<form action="/sqlinfo/friends/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/friends/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

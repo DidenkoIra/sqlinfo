@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+    <title>XP</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>XP</h4>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Check ID</th>
+        <th>XP Amount</th>
+        <th> </th>
+    </tr>
+    <tr th:each="xp : ${xp}">
+        <td th:text="${xp.getId()}"/>
+        <td><a th:href="@{/checks/{id}(id=${xp.getCheck().getId()})}"
+               th:text="${xp.getCheck().getId()}" > id </a></td>
+        <td th:text="${xp.getXpAmount()}"/>
+        <td><a th:href="@{/xp/{id}(id=${xp.getId()})}">
+            <img th:src="@{/resources/static/info.png}" width="25" height="25"></a></td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/xp/new">
+    <input type="submit" value="Create new xp" />
+</form>
+
+<form action="/sqlinfo/xp/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/xp/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

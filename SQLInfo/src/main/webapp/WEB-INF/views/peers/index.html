@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Peers</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>Peers</h4>
+<table>
+    <tr>
+        <th>Nickname</th>
+        <th>Birthday</th>
+    </tr>
+    <tr th:each="peer : ${peers}">
+        <td><a th:href="@{/peers/{nickname}(nickname=${peer.getNickname()})}" th:text="${peer.getNickname()}" > Nickname</a></td>
+        <td th:text="${#dates.format(peer.getBirthday(), 'dd-MM-yyyy')}">Birthday</td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/peers/new">
+    <input type="submit" value="Create new peer" />
+</form>
+
+<form action="/sqlinfo/peers/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/peers/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

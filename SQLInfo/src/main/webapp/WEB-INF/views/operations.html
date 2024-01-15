@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Operations</title>
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+
+<table>
+    <tr>
+        <th>N</th>
+        <th>Operation</th>
+        <th>About</th>
+    </tr>
+    <tr>
+        <td> 1</td>
+        <td><a href="/sqlinfo/operations/transferred_points">Transferred points</a></td>
+        <td>This is a function that returns the TransferredPoints table in a more human-readable form</td>
+    </tr>
+    <tr>
+        <td> 2</td>
+        <td><a href="/sqlinfo/operations/checked_peers_with_XP">Checked peers with XP</a></td>
+        <td>This is a function that returns a table of the following form: user name, name of the checked task, number of XP received</td>
+    </tr>
+    <tr>
+        <td> 3</td>
+        <td><a href="/sqlinfo/operations/peers_in_campus">Peers in campus</a></td>
+        <td> This is a function that finds the peers who have not left campus for the whole day</td>
+    </tr>
+        <tr>
+        <td> 4</td>
+        <td><a href="/sqlinfo/operations/points_change">Points change</a></td>
+        <td>Calculate the change in the number of peer points of each peer using the TransferredPoints table</td>
+    </tr>
+    <tr>
+        <td> 5</td>
+        <td><a href="/sqlinfo/operations/points_change_v2">Points change 2.0</a></td>
+        <td>Calculate the change in the number of peer points of each peer</td>
+    </tr>
+    <tr>
+        <td> 6</td>
+        <td><a href="/sqlinfo/operations/most_frequent_task_daily">Most frequent task daily</a></td>
+        <td>Find the most frequently checked task for each day</td>
+    </tr>
+    <tr>
+        <td> 7</td>
+        <td><a href="/sqlinfo/operations/complete_block">Complete block</a></td>
+        <td> Find all peers who have completed the whole given block of tasks and the completion date of the last task</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td><a href="/sqlinfo/operations/find_peer_for_check">Find peer for check</a></td>
+        <td>Determine which peer each student should go to for a check.</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td><a href="/sqlinfo/operations/peers_by_groups">Peers by groups</a></td>
+        <td>Determine the percentage of peers who: started block 1, started block 2, started both, have not started any of them</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td><a href="/sqlinfo/operations/peers_with_birthday_check">Peers with birthday check</a></td>
+        <td>Determine the percentage of peers who have ever successfully passed a check on their birthday</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td><a href="/sqlinfo/operations/given_and_not_given_tasks">Given and not given tasks</a></td>
+        <td>Determine all peers who did the given tasks 1 and 2, but did not do task 3</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td><a href="/sqlinfo/operations/count_of_previous_tasks">Count of previous tasks</a></td>
+        <td>Using recursive common table expression, output the number of preceding tasks for each task</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td><a href="/sqlinfo/operations/find_lucky_days_for_checks">Find lucky days for checks</a></td>
+        <td>Find "lucky" days for checks. A day is considered "lucky" if it has at least N consecutive successful checks</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td><a href="/sqlinfo/operations/get_peer_with_max_xp">Get peer with max XP</a></td>
+        <td>Find the peer with the highest amount of XP</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td><a href="/sqlinfo/operations/get_peers_max_time_spent">Get peers max time spent</a></td>
+        <td>Determine the peers that came before the given time at least N times during the whole time</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td><a href="/sqlinfo/operations/get_peers_left_campus">Get peers who left the campus</a></td>
+        <td>Determine the peers who left the campus more than M times during the last N days</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td><a href="/sqlinfo/operations/percentage_of_early_entries">Percentage of early entries</a></td>
+        <td>Determine for each month the percentage of early entries</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td><a href="/sqlinfo/userquery">User query</a></td>
+        <td>Block allowing the user to enter the SQL-query to manipulate data in the database by himself</td>
+    </tr>
+</table>
+
+
+</body>
+</html>

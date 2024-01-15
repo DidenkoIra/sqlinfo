@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>About XP</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<p>Check: <a th:href="@{/checks/{id}(id=${xp.getCheck().getId()})}"
+             th:text="${xp.getCheck().getId()}"/></p>
+<p th:text="${'XP Amount: ' + xp.getXpAmount()}"/>
+<hr>
+
+<form th:method="DELETE" th:action="@{/xp/{id}(id=${xp.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:action="@{/xp/{id}/edit(id=${xp.getId()})}">
+    <input type="submit" value="Edit" />
+</form>
+
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+</body>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</html>

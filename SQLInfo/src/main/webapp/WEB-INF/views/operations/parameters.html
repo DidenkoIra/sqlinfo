@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title th:text="${'Set parameters for: ' + operation.getName()}">Title</title>
+</head>
+<body>
+    <nav>
+        <ul class="menu-main">
+            <li><a href="/sqlinfo">Home</a></li>
+        </ul>
+    </nav>
+    <form th:method="POST" th:action="@{/operations/execute}" th:object="${operation}">
+        <h4 th:text="${'Set parameters for: ' + operation.getName()}">Text </h4>
+        <input type="hidden" th:field="${operation.name}" id="name" readonly/>
+        <input type="hidden" th:field="${operation.methodName}" id="methodName" readonly/>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            <div th:each="pr, stat: *{parameters}">
+
+                    <tr>
+                        <td th:text="${pr.key}"/>
+                        <td><input type="text" name="value" th:field="*{parameters[__${pr.key}__]}"/></td>
+                    </tr>
+
+            </div>
+        </table>
+        <input type="submit" value="Execute"/>
+    </form>
+</body>
+</html>

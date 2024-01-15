@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+  <title>Tasks</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+  <h4>Tasks</h4>
+  <table>
+      <tr>
+          <th>Title</th>
+          <th>Parent Task</th>
+          <th>MaxXP</th>
+      </tr>
+      <tr th:each="task: ${tasks}">
+        <td><a th:href="@{/tasks/{title}(title=${task.getTitle()})}" th:text="${task.getTitle()}">Title</a></td>
+        <td th:text="${task.getParentTask().getTitle()}">Parent Task</td>
+        <td th:text="${task.getMaxXP()}">MaxXP</td>
+      </tr>
+  </table>
+  
+  <br>
+  <hr>
+
+<form action="/sqlinfo/tasks/new">
+  <input type="submit" value="Create new task" />
+</form>
+
+<form action="/sqlinfo/tasks/import">
+  <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/tasks/export">
+  <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

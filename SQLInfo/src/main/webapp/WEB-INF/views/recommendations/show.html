@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title th:text="${recommendation.getPeer().getNickname()+ ' -> ' + recommendation.getRecommendedPeer().getNickname()}">Title</title>
+</head>
+<body>
+
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+
+<p>Peer: <a th:href="@{/peers/{nickname}(nickname=${recommendation.getPeer().getNickname()})}"
+            th:text="${recommendation.getPeer().getNickname()}"/></p>
+<p>Recommended peer: <a th:href="@{/peers/{nickname}(nickname=${recommendation.getRecommendedPeer().getNickname()})}"
+                        th:text="${recommendation.getRecommendedPeer().getNickname()}"/></p>
+<hr>
+
+<form th:method="DELETE" th:action="@{/recommendations/{id}(id=${recommendation.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:action="@{/recommendations/{id}/edit(id=${recommendation.getId()})}">
+    <input type="submit" value="Edit" />
+</form>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</body>
+</html>

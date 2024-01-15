@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+    <title th:text="${task.getTitle()}">Title</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<p th:text="${'Title: ' + task.getTitle()}"/>
+<p th:text="${'ParentTask: ' + task.getParentTask().getTitle()}"/>
+<p th:text="${'MaxXP: ' + task.getMaxXP()}"/>
+
+<form th:method="DELETE" th:action="@{/tasks/{title}(title=${task.getTitle()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<form th:action="@{/tasks/{title}/edit(title=${task.getTitle()})}">
+    <input type="submit" value="Edit" />
+</form>
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+</body>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</script>
+</html>

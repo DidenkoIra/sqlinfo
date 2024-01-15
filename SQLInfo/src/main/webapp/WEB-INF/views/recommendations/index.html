@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Recommendations</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>Recommendations</h4>
+<table>
+    <tr>
+        <th>Peer</th>
+        <th>Recommended peer</th>
+        <th> </th>
+    </tr>
+    <tr th:each="recommendation : ${recommendations}">
+        <td><a th:href="@{/peers/{nickname}(nickname=${recommendation.getPeer().getNickname()})}"
+               th:text="${recommendation.getPeer().getNickname()}" > Peer</a></td>
+        <td><a th:href="@{/peers/{nickname}(nickname=${recommendation.getRecommendedPeer().getNickname()})}"
+               th:text="${recommendation.getRecommendedPeer().getNickname()}" > Peer</a></td>
+        <td><a th:href="@{/recommendations/{id}(id=${recommendation.getId()})}">
+            <img th:src="@{/resources/static/info.png}" width="25" height="25"></a></td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/recommendations/new">
+    <input type="submit" value="Create new recommendation" />
+</form>
+
+<form action="/sqlinfo/recommendations/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/recommendations/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

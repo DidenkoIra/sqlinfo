@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+    <title th:text="${task.getTitle()}">Title</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<form th:method="PATCH" th:action="@{/tasks/{title}(title=${task.getTitle()})}" th:object="${task}">
+    <label for="parentTask">Enter parent task: </label>
+    <input type="text" th:field="*{parentTask.title}" id="parentTask"/>
+    <div style="color: red" th:if="${#fields.hasErrors('parentTask')}" th:errors="*{parentTask}">...</div>
+    <br/>
+    <label for="maxXP">Enter maxXP: </label>
+    <input type="text" th:field="*{maxXP}" id="maxXP"/>
+    <div style="color: red" th:if="${#fields.hasErrors('maxXP')}" th:errors="*{maxXP}">...</div>
+    <br/>
+    <input type="submit" value="Save"/>
+</form>
+<script type="text/javascript" src="/resources/static/ConfirmSubmit.js">
+</script>
+</body>
+</html>

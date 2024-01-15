@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Checks</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>Checks</h4>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Peer</th>
+        <th>Task</th>
+        <th>Date</th>
+        <th> </th>
+    </tr>
+    <tr th:each="check : ${checks}">
+        <td th:text="${check.getId()}"/>
+        <td><a th:href="@{/peers/{nickname}(nickname=${check.getPeer().getNickname()})}"
+               th:text="${check.getPeer().getNickname()}" > Peer</a></td>
+        <td><a th:href="@{/tasks/{title}(title=${check.getTask().getTitle()})}"
+               th:text="${check.getTask().getTitle()}" > Task </a></td>
+        <td th:text="${#dates.format(check.getDate(), 'dd-MM-yyyy')}"/>
+        <td><a th:href="@{/checks/{id}(id=${check.getId()})}">
+            <img th:src="@{/resources/static/info.png}" width="25" height="25"></a></td>
+    </tr>
+</table>
+
+<hr>
+<form action="/sqlinfo/checks/new">
+    <input type="submit" value="Create new recommendation" />
+</form>
+
+<form action="/sqlinfo/checks/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/checks/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

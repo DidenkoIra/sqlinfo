@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>About p2p</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<p>Checking peer: <a th:href="@{/peers/{nickname}(nickname=${p2p.getCheckingPeer().getNickname()})}"
+              th:text="${p2p.getCheckingPeer().getNickname()}"/></p>
+<p>Check: <a th:href="@{/checks/{id}(id=${p2p.getCheck().getId()})}"
+            th:text="${p2p.getCheck().getId()}"/></p>
+<p th:text="${'State: ' + p2p.getState()}"/>
+<p th:text="${'Time: ' + p2p.getTime()}"/>
+<hr>
+
+<form th:method="DELETE" th:action="@{/p2p/{id}(id=${p2p.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:action="@{/p2p/{id}/edit(id=${p2p.getId()})}">
+    <input type="submit" value="Edit" />
+</form>
+
+<p th:id="errorMessage" th:text="${errorMessage}"/>
+</body>
+<script type="text/javascript" th:src="@{/resources/static/ConfirmSubmit.js}"></script>
+</html>

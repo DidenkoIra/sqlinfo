@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet" />
+    <title>Peer 2 peer</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+<h4>Peer 2 peer</h4>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Check ID</th>
+        <th>Checking peer</th>
+        <th>State</th>
+        <th>Time</th>
+        <th> </th>
+    </tr>
+    <tr th:each="p2p : ${p2ps}">
+        <td th:text="${p2p.getId()}"/>
+        <td><a th:href="@{/checks/{id}(id=${p2p.getCheck().getId()})}"
+               th:text="${p2p.getCheck().getId()}" > id </a></td>
+        <td><a th:href="@{/peers/{nickname}(nickname=${p2p.getCheckingPeer().getNickname()})}"
+               th:text="${p2p.getCheckingPeer().getNickname()}" > peer </a></td>
+        <td th:text="${p2p.getState()}"/>
+        <td th:text="${p2p.getTime()}"/>
+        <td><a th:href="@{/p2p/{id}(id=${p2p.getId()})}">
+            <img th:src="@{/resources/static/info.png}" width="25" height="25"></a></td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<form action="/sqlinfo/p2p/new">
+    <input type="submit" value="Create new p2p" />
+</form>
+
+<form action="/sqlinfo/p2p/import">
+    <input type="submit" value="Import" />
+</form>
+
+<form action="/sqlinfo/p2p/export">
+    <input type="submit" value="Export" />
+</form>
+
+</body>
+</html>

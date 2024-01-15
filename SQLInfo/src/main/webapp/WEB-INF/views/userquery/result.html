@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/resources/static/style.css}" rel="stylesheet"/>
+    <title>Result of user query</title>
+</head>
+<body>
+<nav>
+    <ul class="menu-main">
+        <li><a href="/sqlinfo">Home</a></li>
+    </ul>
+</nav>
+    <h4>Your query: </h4>
+    <p th:text="${userQuery.text}"/>
+    <h4>Parameters for your query: </h4>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <tr th:each="instance : ${userQuery.getParameters()}">
+            <td th:text="${instance.key} + ': '">key</td>
+            <td th:text="${instance.value}">value</td>
+        </tr>
+    </table>
+
+
+    <h4>Result:</h4>
+
+    <table>
+        <tr>
+            <th th:each="columnName : ${userQuery.getColumnsName()}">
+                <a th:text="${columnName}" />
+            </th>
+        </tr>
+
+        <tr th:each="record : ${userQuery.getResult()}">
+            <td th:each="column : ${record}">
+                <a th:text="${column}" />
+            </td>
+        </tr>
+    </table>
+    <p th:id="errorMessage" th:text="${errorMessage}"/>
+</body>
+</html>
